@@ -1,11 +1,11 @@
-interface TaskType {
+interface TaskProps {
   id: string;
   title: string;
   completed: boolean;
   deleteTaskFunc?: (id: string) => void;
   toggleDoneTaskFunc?: (id: string) => void;
 }
-export type { TaskType };
+export type { TaskProps };
 
 interface FooterProps {
   year?: string;
