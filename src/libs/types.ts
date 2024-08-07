@@ -14,7 +14,9 @@ interface FooterProps {
 }
 export type { FooterProps };
 
-interface TaskInputProps {}
+interface TaskInputProps {
+  addTaskFunc: (title: string)=> void;
+}
 export type { TaskInputProps };
 
 // add UserCardDetailProps
