@@ -20,5 +20,16 @@ interface TaskInputProps {
 export type { TaskInputProps };
 
 // add UserCardDetailProps
-
+interface UserCardProps{
+  name:String;
+  imgUrl:string;
+  email:string;
+  address:string;
+}
+export type {UserCardProps}
 // add UserCardProps
+interface UserCardDetailProps {
+  email: string;
+  address: string;
+}
+export type {UserCardDetailProps}
