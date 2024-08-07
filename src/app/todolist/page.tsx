@@ -5,17 +5,33 @@ import Header from "@/components/Header";
 import Task from "@/components/Task";
 import TaskInput from "@/components/TaskInput";
 import { nanoid } from "nanoid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { TaskType } from "@/libs/types";
-
+import { TaskProps } from "@/libs/types";
 export default function Todolist() {
   //tasks = array of {id: string, title: string, complete: boolean}
-  const [tasks, setTasks] = useState<TaskType[]>([]);
+  const [tasks, setTasks] = useState<TaskProps[]>([]);
 
   //create 1st load state variable
+  const [isFirstLoad, setFirstLoad] = useState(true);
 
   //add useEffect runs at first and after tasks is updated
+  useEffect(() => {
+    if (isFirstLoad){
+      setFirstLoad(false);
+      return;
+    }
+    const jsonStr = JSON.stringify(tasks);
+    localStorage.setItem("tasks", jsonStr)
+  }, [tasks]);
+
+  useEffect(() => {
+    const JsonStr = localStorage.getItem("tasks");
+    if (JsonStr !== null){
+    const newTasks = JSON.parse(JsonStr);
+    setTasks(newTasks);
+  }
+  },[]);
 
   // add new task with specified title
   const addTask = (newTaskTitle: string) => {
